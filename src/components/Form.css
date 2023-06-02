@@ -1,0 +1,28 @@
+.activity-form {
+  display: grid;
+  grid-template-areas: "a a" "b c" "d e" "f f";
+}
+
+.activity-form__title {
+  grid-area: a;
+}
+
+.activity-form__name-label {
+  grid-area: b;
+}
+
+.activity-form__name-input {
+  grid-area: c;
+}
+
+.activity-form__checkbox-label {
+  grid-area: d;
+}
+
+.activity-form__checkbox-input {
+  grid-area: e;
+}
+
+.activity-form__submit-button {
+  grid-area: f;
+}
