@@ -1,7 +1,7 @@
 export default function Header({ children }) {
   return (
-    <header>
-      <h1>Activity & Weather App</h1>
+    <header className="header">
+      <h1 className="title">Activity & Weather App</h1>
       {children}
     </header>
   );

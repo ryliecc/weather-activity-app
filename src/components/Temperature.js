@@ -1,3 +1,3 @@
 export default function Temperature() {
-  return <span>36 Grad</span>;
+  return <span className="header__temperature">36 Grad</span>;
 }

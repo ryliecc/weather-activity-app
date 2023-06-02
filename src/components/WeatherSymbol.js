@@ -1,3 +1,3 @@
 export default function WeatherSymbol() {
-  return <p>🌞</p>;
+  return <p className="header__weather-symbol">🌞</p>;
 }

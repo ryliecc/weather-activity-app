@@ -1,0 +1,10 @@
+.header {
+  display: grid;
+  grid-template-areas: "a a" "b c" "d d";
+}
+
+.title {
+  grid-area: a;
+  text-align: center;
+  margin: 1em auto;
+}
