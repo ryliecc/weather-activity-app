@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
-import Activity from "./components/Activity.js";
 import DeleteButton from "./components/DeleteButton.js";
 import Header from "./components/Header.js";
 import Main from "./components/Main.js";
@@ -22,10 +21,21 @@ export default function App() {
   } */
 
   const [activities, setActivities] = useLocalStorageState("activities", []);
+  const isGoodWeather = true;
+
+  const [sunnyActivities, setSunnyActivities] = useLocalStorageState(
+    "sunnyActivities",
+    []
+  );
 
   useEffect(() => {
+    const newSunnyActivities = activities.filter(
+      (activity) => activity.isForGoodWeather === isGoodWeather
+    );
+    setSunnyActivities(newSunnyActivities);
     console.log(activities);
-  }, [activities]);
+    console.log(sunnyActivities);
+  }, [activities, isGoodWeather, setSunnyActivities, sunnyActivities]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,10 +62,8 @@ export default function App() {
         <Text />
       </Header>
       <Main>
-        <ActivityList>
-          <Activity>
-            <DeleteButton />
-          </Activity>
+        <ActivityList listitems="sunnyActivities">
+          <DeleteButton />
         </ActivityList>
         <Form onSubmit={handleSubmit} />
       </Main>
