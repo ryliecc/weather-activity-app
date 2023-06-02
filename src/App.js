@@ -1,4 +1,5 @@
 import useLocalStorageState from "use-local-storage-state";
+import { useEffect } from "react";
 import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
@@ -20,23 +21,26 @@ export default function App() {
     localStorage.setItem(key, JSON.stringify(value));
   } */
 
-  const [activities, setActivities] = useLocalStorageState("activities", {[]});
+  const [activities, setActivities] = useLocalStorageState("activities", []);
   console.log(activities);
-  function handleSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    setActivities([
-      {
-        id: uid(),
-        name: form.elements.name.value,
-        isForGoodWeather: form.elements.checkbox.checked,
-      },
-      ...activities,
-    ]);
-    console.log(activities);
-    form.elements.reset();
-    form.elements.name.focus();
-  }
+  useEffect(() => {
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      setActivities([
+        {
+          id: uid(),
+          name: form.elements.name.value,
+          isForGoodWeather: form.elements.checkbox.checked,
+        },
+        ...activities,
+      ]);
+      console.log(activities);
+      form.elements.reset();
+      form.elements.name.focus();
+    }
+    return handleSubmit;
+  }, []);
 
   return (
     <>
