@@ -1,0 +1,10 @@
+:root {
+  --color-example: white;
+}
+
+* {
+  color: black;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,34 @@
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.activity-list__listitem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: thin solid;
+  background-color: skyblue;
+  box-sizing: content-box;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
+  width: 85%;
+  padding-left: 1em;
+  padding-right: 0.5em;
+}
+
+.activity-list__listitem--name {
+  color: aliceblue;
+  text-align: center;
+  align-self: center;
+}
+
+.activity-list__listitem--delete-button {
+  font-size: 2em;
+  background-color: transparent;
+  border: none;
+}
