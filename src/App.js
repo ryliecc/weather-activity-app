@@ -59,10 +59,10 @@ export default function App() {
       <Header>
         <WeatherSymbol />
         <Temperature />
-        <Text />
+        <Text isGoodWeather={isGoodWeather} />
       </Header>
       <Main>
-        <ActivityList listitems="sunnyActivities">
+        <ActivityList listitems={sunnyActivities}>
           <DeleteButton />
         </ActivityList>
         <Form onSubmit={handleSubmit} />
