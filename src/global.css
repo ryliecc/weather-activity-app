@@ -3,7 +3,7 @@
 }
 
 * {
-  color: var(--color-example);
+  color: black;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
