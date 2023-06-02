@@ -6,7 +6,15 @@ import ActivityList from "./components/ActivityList.js";
 import "./App.css";
 
 export default function App() {
-  const [activities, setActivities] = useLocalStorageState([]);
+  // Hilfsfunktionen für Local Storage
+  function getItem(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+  function setItem(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  const [activities, setActivities] = useLocalStorageState("activities", []);
 
   function handleSubmit(event) {
     event.preventDefault();
