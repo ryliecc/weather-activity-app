@@ -40,6 +40,8 @@ export default function App() {
     } else {
       setActivities([newActivity]);
     }
+    form.reset();
+    form.name.focus();
   }
 
   return (
