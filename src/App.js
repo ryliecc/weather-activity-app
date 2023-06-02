@@ -22,25 +22,25 @@ export default function App() {
   } */
 
   const [activities, setActivities] = useLocalStorageState("activities", []);
-  console.log(activities);
+
   useEffect(() => {
-    function handleSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-      setActivities([
-        {
-          id: uid(),
-          name: form.elements.name.value,
-          isForGoodWeather: form.elements.checkbox.checked,
-        },
-        ...activities,
-      ]);
-      console.log(activities);
-      form.elements.reset();
-      form.elements.name.focus();
+    console.log(activities);
+  }, [activities]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const newActivity = {
+      id: uid(),
+      name: form.elements.name.value,
+      isForGoodWeather: form.elements.checkbox.checked,
+    };
+    if (activities.length >= 0) {
+      setActivities([newActivity, ...activities]);
+    } else {
+      setActivities([newActivity]);
     }
-    return handleSubmit;
-  }, []);
+  }
 
   return (
     <>
