@@ -11,21 +11,24 @@ import WeatherSymbol from "./components/WeatherSymbol.js";
 import "./App.css";
 
 export default function App() {
-  // Hilfsfunktionen für Local Storage
-  /* function getItem(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-  function setItem(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-  } */
-
   const [activities, setActivities] = useLocalStorageState("activities", []);
-  const isGoodWeather = true;
-
+  const [weather, setWeather] = useLocalStorageState("weather", false);
   const [sunnyActivities, setSunnyActivities] = useLocalStorageState(
     "sunnyActivities",
     []
   );
+
+  useEffect(() => {
+    async function startFetching() {
+      const response = await fetch(
+        "https://example-apis.vercel.app/api/weather"
+      );
+      const weather = await response.json();
+      setWeather(weather);
+    }
+    startFetching();
+    console.log(weather);
+  }, [setWeather, weather]);
 
   useEffect(() => {
     const newSunnyActivities = activities.filter(
@@ -34,7 +37,7 @@ export default function App() {
     setSunnyActivities(newSunnyActivities);
     console.log(activities);
     console.log(sunnyActivities);
-  }, [activities, isGoodWeather, setSunnyActivities, sunnyActivities]);
+  }, [activities, setSunnyActivities, sunnyActivities]);
 
   function handleSubmit(event) {
     event.preventDefault();
