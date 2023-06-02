@@ -32,12 +32,12 @@ export default function App() {
 
   useEffect(() => {
     const newSunnyActivities = activities.filter(
-      (activity) => activity.isForGoodWeather === isGoodWeather
+      (activity) => activity.isForGoodWeather === weather.isGoodWeather
     );
     setSunnyActivities(newSunnyActivities);
     console.log(activities);
     console.log(sunnyActivities);
-  }, [activities, setSunnyActivities, sunnyActivities]);
+  }, [activities, setSunnyActivities, sunnyActivities, weather]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -59,9 +59,9 @@ export default function App() {
   return (
     <>
       <Header>
-        <WeatherSymbol />
-        <Temperature />
-        <Text isGoodWeather={isGoodWeather} />
+        <WeatherSymbol symbol={weather.condition} />
+        <Temperature degreeNumber={weather.temperature} />
+        <Text isGoodWeather={weather.isGoodWeather} />
       </Header>
       <Main>
         <ActivityList listitems={sunnyActivities} />
