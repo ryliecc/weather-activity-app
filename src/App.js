@@ -1,7 +1,8 @@
-import logo from './logo.svg';
+import Form from "./components/Form.js"
 import './App.css';
+im
 
-function App() {
+export default function App() {
   return (
   <Header>
     <WeatherSymbol />
@@ -15,15 +16,8 @@ function App() {
         <DeleteButton />
     </Activity>
     </ActivityList>
-    <Form>
-      <Heading />
-      <Input />
-      <Input />
-      <Button />
-    </Form>
+    <Form onSubmit={handleSubmit}/>
     </Main>
 
   );
 }
-
-export default App;
