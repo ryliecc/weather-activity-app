@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
-import DeleteButton from "./components/DeleteButton.js";
 import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Temperature from "./components/Temperature.js";
@@ -62,9 +61,7 @@ export default function App() {
         <Text isGoodWeather={isGoodWeather} />
       </Header>
       <Main>
-        <ActivityList listitems={sunnyActivities}>
-          <DeleteButton />
-        </ActivityList>
+        <ActivityList listitems={sunnyActivities} />
         <Form onSubmit={handleSubmit} />
       </Main>
     </>
