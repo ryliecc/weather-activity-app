@@ -4,10 +4,6 @@ import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
 import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Temperature from "./components/Temperature.js";
-import Text from "./components/Text.js";
-import WeatherSymbol from "./components/WeatherSymbol.js";
 import "./App.css";
 
 export default function App() {
@@ -28,16 +24,27 @@ export default function App() {
     }
     startFetching();
     console.log(weather);
-  }, [setWeather, weather]);
+    const fetchIntervId = setInterval(startFetching, 5000);
+    return () => {
+      clearInterval(fetchIntervId);
+    };
+  });
 
   useEffect(() => {
     const newSunnyActivities = activities.filter(
       (activity) => activity.isForGoodWeather === weather.isGoodWeather
     );
     setSunnyActivities(newSunnyActivities);
-    console.log(activities);
     console.log(sunnyActivities);
-  }, [activities, setSunnyActivities, sunnyActivities, weather]);
+  }, [activities, setSunnyActivities, sunnyActivities, weather.isGoodWeather]);
+
+  function handleDeteleActivity(toDelete) {
+    const updatedActivities = activities.filter(
+      (activity) => activity.id !== toDelete
+    );
+    setActivities(updatedActivities);
+    console.log(activities);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,26 +54,24 @@ export default function App() {
       name: form.elements.name.value,
       isForGoodWeather: form.elements.checkbox.checked,
     };
-    if (activities.length >= 0) {
-      setActivities([newActivity, ...activities]);
-    } else {
-      setActivities([newActivity]);
-    }
+    setActivities([...activities, newActivity]);
+    console.log(activities);
     form.reset();
     form.name.focus();
   }
 
   return (
     <>
-      <Header>
-        <WeatherSymbol symbol={weather.condition} />
-        <Temperature degreeNumber={weather.temperature} />
-        <Text isGoodWeather={weather.isGoodWeather} />
-      </Header>
-      <Main>
-        <ActivityList listitems={sunnyActivities} />
-        <Form onSubmit={handleSubmit} />
-      </Main>
+      <Header
+        symbol={weather.condition}
+        degreeNumber={weather.temperature}
+        isGoodWeather={weather.isGoodWeather}
+      />
+      <ActivityList
+        listitems={sunnyActivities}
+        onDeleteActivity={handleDeteleActivity}
+      />
+      <Form onSubmit={handleSubmit} />
     </>
   );
 }

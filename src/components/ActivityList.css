@@ -1,28 +1,26 @@
 .activity-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.6em;
   justify-content: center;
   margin: 0;
-  padding: 0;
+  padding: 1em;
 }
 
 .activity-list__listitem {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: thin solid;
-  background-color: skyblue;
-  box-sizing: content-box;
-  margin-left: 0.8em;
-  margin-right: 0.8em;
-  width: 85%;
-  padding-left: 1em;
-  padding-right: 0.5em;
+  align-self: center;
+  border: dotted var(--color-wine);
+  background-color: var(--color-rosegold);
+  width: 95%;
+  padding-inline: 0.5em;
 }
 
 .activity-list__listitem--name {
-  color: aliceblue;
+  background-color: transparent;
+  color: var(--color-wine);
   text-align: center;
   align-self: center;
 }

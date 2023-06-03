@@ -1,10 +1,14 @@
 :root {
-  --color-example: white;
+  /* FADED ROSE COLOR PALETTE */
+  --color-white: #dfdfde;
+  --color-wine: #a2798f;
+  --color-rosegold: #d7c6cf;
+  --color-teal: #8caba8;
+  --color-lightrose: #ebdada;
 }
 
 * {
-  color: black;
   margin: 0;
-  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-teal);
 }
