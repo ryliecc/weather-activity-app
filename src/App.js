@@ -28,16 +28,27 @@ export default function App() {
     }
     startFetching();
     console.log(weather);
-  }, [setWeather, weather]);
+    const fetchIntervId = setInterval(startFetching, 5000);
+    return () => {
+      clearInterval(fetchIntervId);
+    };
+  });
 
   useEffect(() => {
     const newSunnyActivities = activities.filter(
       (activity) => activity.isForGoodWeather === weather.isGoodWeather
     );
     setSunnyActivities(newSunnyActivities);
-    console.log(activities);
     console.log(sunnyActivities);
-  }, [activities, setSunnyActivities, sunnyActivities, weather]);
+  }, [activities, setSunnyActivities, sunnyActivities, weather.isGoodWeather]);
+
+  function handleDeteleActivity(toDelete) {
+    const updatedActivities = activities.filter(
+      (activity) => activity.id !== toDelete
+    );
+    setActivities(updatedActivities);
+    console.log(activities);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,11 +58,8 @@ export default function App() {
       name: form.elements.name.value,
       isForGoodWeather: form.elements.checkbox.checked,
     };
-    if (activities.length >= 0) {
-      setActivities([newActivity, ...activities]);
-    } else {
-      setActivities([newActivity]);
-    }
+    setActivities([...activities, newActivity]);
+    console.log(activities);
     form.reset();
     form.name.focus();
   }
@@ -64,7 +72,10 @@ export default function App() {
         <Text isGoodWeather={weather.isGoodWeather} />
       </Header>
       <Main>
-        <ActivityList listitems={sunnyActivities} />
+        <ActivityList
+          listitems={sunnyActivities}
+          onDeleteActivity={handleDeteleActivity}
+        />
         <Form onSubmit={handleSubmit} />
       </Main>
     </>

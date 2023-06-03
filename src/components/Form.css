@@ -1,6 +1,7 @@
 .activity-form {
   display: grid;
   grid-template-areas: "a a" "b c" "d e" "f f";
+  padding: 2em;
 }
 
 .activity-form__title {
