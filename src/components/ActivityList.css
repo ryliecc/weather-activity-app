@@ -12,13 +12,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-self: center;
-  border: thin solid;
-  background-color: skyblue;
-  width: 90%;
+  border: dotted var(--color-wine);
+  background-color: var(--color-rosegold);
+  width: 95%;
+  padding-inline: 0.5em;
 }
 
 .activity-list__listitem--name {
-  color: aliceblue;
+  background-color: transparent;
+  color: var(--color-wine);
   text-align: center;
   align-self: center;
 }
