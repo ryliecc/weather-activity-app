@@ -4,10 +4,6 @@ import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
 import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Temperature from "./components/Temperature.js";
-import Text from "./components/Text.js";
-import WeatherSymbol from "./components/WeatherSymbol.js";
 import "./App.css";
 
 export default function App() {
@@ -66,18 +62,16 @@ export default function App() {
 
   return (
     <>
-      <Header>
-        <WeatherSymbol symbol={weather.condition} />
-        <Temperature degreeNumber={weather.temperature} />
-        <Text isGoodWeather={weather.isGoodWeather} />
-      </Header>
-      <Main>
-        <ActivityList
-          listitems={sunnyActivities}
-          onDeleteActivity={handleDeteleActivity}
-        />
-        <Form onSubmit={handleSubmit} />
-      </Main>
+      <Header
+        symbol={weather.condition}
+        degreeNumber={weather.temperature}
+        isGoodWeather={weather.isGoodWeather}
+      />
+      <ActivityList
+        listitems={sunnyActivities}
+        onDeleteActivity={handleDeteleActivity}
+      />
+      <Form onSubmit={handleSubmit} />
     </>
   );
 }

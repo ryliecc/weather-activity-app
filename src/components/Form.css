@@ -3,7 +3,7 @@
   display: grid;
   grid-template-areas: "a a" "b c" "d e" "f f";
   gap: 0.3em;
-  margin: 7%;
+  margin: 5%;
   padding: 0.4em;
   justify-content: stretch;
   background-color: var(--color-rosegold);
@@ -50,4 +50,10 @@
   color: var(--color-wine);
   border: var(--color-wine) double;
   border-radius: 10px;
+}
+
+.activity-form__submit-button:hover {
+  border: var(--color-white) double;
+  color: var(--color-rosegold);
+  background-color: var(--color-wine);
 }

@@ -5,6 +5,29 @@
 
 .title {
   grid-area: a;
+  border: var(--color-wine) double 0.2em;
+  border-radius: 10px;
   text-align: center;
-  margin: 1em auto;
+  padding: 0.4em auto;
+  color: var(--color-wine);
+  background-color: var(--color-lightrose);
+}
+
+.header__weather-symbol {
+  grid-area: b;
+  font-size: 5em;
+  justify-self: center;
+}
+
+.header__temperature {
+  grid-area: c;
+  font-size: 2.5em;
+  align-self: center;
+}
+
+.text {
+  grid-area: d;
+  font-size: 1.5em;
+  justify-self: center;
+  margin: 1em;
 }
