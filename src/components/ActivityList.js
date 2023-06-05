@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ActivityList({ listitems, onDeleteActivity }) {
   return (
     <ul className="activity-list">

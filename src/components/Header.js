@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Header({ symbol, degreeNumber, isGoodWeather }) {
   let text;
   if (isGoodWeather === true) {

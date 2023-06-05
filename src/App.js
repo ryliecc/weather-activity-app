@@ -1,18 +1,24 @@
 import useLocalStorageState from "use-local-storage-state";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { uid } from "uid";
 import Form from "./components/Form.js";
 import ActivityList from "./components/ActivityList.js";
 import Header from "./components/Header.js";
 import "./App.css";
+import React from "react";
 
 export default function App() {
-  const [activities, setActivities] = useLocalStorageState("activities", []);
-  const [weather, setWeather] = useLocalStorageState("weather", false);
-  const [sunnyActivities, setSunnyActivities] = useLocalStorageState(
-    "sunnyActivities",
-    []
-  );
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [],
+  });
+  const [weather, setWeather] = useLocalStorageState("weather", {
+    defaultValue: {
+      location: "Europe",
+      temperature: 7,
+      condition: "🌧️",
+      isGoodWeather: false,
+    },
+  });
 
   useEffect(() => {
     async function startFetching() {
@@ -23,20 +29,11 @@ export default function App() {
       setWeather(weather);
     }
     startFetching();
-    console.log(weather);
     const fetchIntervId = setInterval(startFetching, 5000);
     return () => {
       clearInterval(fetchIntervId);
     };
   });
-
-  useEffect(() => {
-    const newSunnyActivities = activities.filter(
-      (activity) => activity.isForGoodWeather === weather.isGoodWeather
-    );
-    setSunnyActivities(newSunnyActivities);
-    console.log(sunnyActivities);
-  }, [activities, setSunnyActivities, sunnyActivities, weather.isGoodWeather]);
 
   function handleDeteleActivity(toDelete) {
     const updatedActivities = activities.filter(
@@ -60,6 +57,14 @@ export default function App() {
     form.name.focus();
   }
 
+  if (!activities || !weather) {
+    return;
+  }
+
+  const fittingActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === weather.isGoodWeather
+  );
+
   return (
     <>
       <Header
@@ -68,7 +73,7 @@ export default function App() {
         isGoodWeather={weather.isGoodWeather}
       />
       <ActivityList
-        listitems={sunnyActivities}
+        listitems={fittingActivities}
         onDeleteActivity={handleDeteleActivity}
       />
       <Form onSubmit={handleSubmit} />
